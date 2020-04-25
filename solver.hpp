@@ -6,45 +6,41 @@ using namespace std;
 namespace solver{
     class RealVariable
     {
-        double _coe;
-         int _pow;
-         public:
-         RealVariable(): _pow(1),_coe(1){}
-         RealVariable operator+(const int);
-          RealVariable operator-(const int);
-         RealVariable operator*(const int);
-         RealVariable operator/(const int);
-          RealVariable operator+(const RealVariable);
-          RealVariable operator-(const RealVariable);
-         RealVariable operator*(const RealVariable);
-         RealVariable operator==(const RealVariable);
-         RealVariable operator==(const int);
-         RealVariable operator^(const int);
-
-         friend double solve (const RealVariable);
-
+     public:
+       double arr[3];
+         
+         RealVariable(double x=0,double y=1, double z=0): arr[0](x),arr[1](y),arr[2](z){}
+       
 
         
     };
-    
+       RealVariable operator+(const RealVariable&,const double);
+       RealVariable operator+(const double,const RealVariable&);
+       RealVariable operator+(const RealVariable&,const RealVariable&);
+
+
+       RealVariable operator-(const double,const RealVariable&);
+       RealVariable operator-(const RealVariable&,const double);
+       RealVariable operator-(const RealVariable&,const RealVariable&);
+
+       RealVariable operator*(const RealVariable&,const double);
+       RealVariable operator*(const double,const RealVariable&);
+       RealVariable operator*(const RealVariable&,const RealVariable&);
+
+       RealVariable operator/(const RealVariable&,const double);
+
+
+
+         RealVariable operator==(const RealVariable&,const RealVariable&);
+         RealVariable operator==(const RealVariable&,const double);
+         RealVariable operator==(const double, const RealVariable&);
+
+         
+         
+        RealVariable operator^(const RealVariable&,const double);
    class ComplexVariable
    {
-        double _coe;
-         int _pow;
-         public:
-         ComplexVariable():  _pow(1),_coe(1){}
-         ComplexVariable operator+(const int);
-          ComplexVariable operator-(const int);
-         ComplexVariable operator*(const int);
-         ComplexVariable operator/(const int);
-          ComplexVariable operator+(const ComplexVariable);
-          ComplexVariable operator-(const ComplexVariable);
-         ComplexVariable operator*(const ComplexVariable);
-          ComplexVariable operator^(const int);
-
-         ComplexVariable operator==(const int);
-         ComplexVariable operator==(const ComplexVariable);
-         friend  std::complex<double> solve (const ComplexVariable);
+       
    };
     class solve
     {
