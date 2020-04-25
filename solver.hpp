@@ -1,7 +1,7 @@
 #pragma once
 #include<iostream>
 #include <complex>
-
+#include <cmath>
 using namespace std;
 namespace solver{
     class RealVariable
@@ -9,10 +9,10 @@ namespace solver{
      public:
        double arr[3];
          
-         RealVariable(double x=0,double y=1, double z=0): arr[0](x),arr[1](y),arr[2](z){}
+         RealVariable(){ arr[0]=0; arr[1]=0; arr[2]=0;}
        
 
-        
+
     };
        RealVariable operator+(const RealVariable&,const double);
        RealVariable operator+(const double,const RealVariable&);
@@ -38,17 +38,10 @@ namespace solver{
          
          
         RealVariable operator^(const RealVariable&,const double);
-   class ComplexVariable
-   {
-       
-   };
-    class solve
-    {
-     
-        solve();
-        double solve (const RealVariable);
-        std::complex<double> solve (const ComplexVariable);
+  
+   
+           class ComplexVariable{};
+           class solve{};
+                   double solve (const RealVariable&);
 
-        
-    };
 }
