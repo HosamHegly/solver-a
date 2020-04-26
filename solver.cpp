@@ -5,10 +5,12 @@
 #include <complex>
 
 using namespace std;
-using  solver::RealVariable, solver::ComplexVariable;
 
 
-RealVariable operator+(const double num, const RealVariable &r)
+using solver::RealVariable, solver::ComplexVariable;
+  
+  
+  RealVariable solver:: operator+(const double num, const RealVariable &r)
 {
     RealVariable c;
     c.arr[0]=r.arr[0];
@@ -21,7 +23,7 @@ RealVariable operator+(const double num, const RealVariable &r)
     return c ;
 }
 
-RealVariable operator+( const RealVariable &r,const double num)
+RealVariable  solver::operator+( const RealVariable &r,const double num)
 {
      RealVariable c;
     c.arr[0]=r.arr[0];
@@ -33,7 +35,7 @@ RealVariable operator+( const RealVariable &r,const double num)
     
     return c ;
 }
-RealVariable operator+(const RealVariable& r,const RealVariable& rr){
+RealVariable solver:: operator+(const RealVariable& r,const RealVariable& rr){
      RealVariable c,d;
     c.arr[0]=r.arr[0];
     c.arr[1]=r.arr[1];
@@ -55,7 +57,7 @@ RealVariable operator+(const RealVariable& r,const RealVariable& rr){
 
 
 
-RealVariable operator-(const double num, const RealVariable &r)
+RealVariable solver:: operator-(const double num, const RealVariable &r)
 {
 RealVariable c;
     c.arr[0]=-r.arr[0];
@@ -65,7 +67,7 @@ RealVariable c;
     return c;
 }
 
-RealVariable operator-( const RealVariable &r,const double num)
+RealVariable  solver::operator-( const RealVariable &r,const double num)
 {
     RealVariable c;
     c.arr[0]=r.arr[0];
@@ -77,7 +79,7 @@ RealVariable operator-( const RealVariable &r,const double num)
     
     return c ;
 }
-RealVariable operator-(const RealVariable& r,const RealVariable& rr){
+RealVariable  solver::operator-(const RealVariable& r,const RealVariable& rr){
      RealVariable c,d;
     c.arr[0]=r.arr[0];
     c.arr[1]=r.arr[1];
@@ -94,7 +96,7 @@ RealVariable operator-(const RealVariable& r,const RealVariable& rr){
     return c;
 }
 
-RealVariable operator*(const double num, const RealVariable &r)
+RealVariable solver:: operator*(const double num, const RealVariable &r)
 {
      RealVariable c;
     c.arr[0]=r.arr[0];
@@ -110,7 +112,7 @@ RealVariable operator*(const double num, const RealVariable &r)
     
 }
 
-RealVariable operator*( const RealVariable &r,const double num)
+RealVariable  solver::operator*( const RealVariable &r,const double num)
 {
      RealVariable c;
     c.arr[0]=r.arr[0];
@@ -124,13 +126,13 @@ RealVariable operator*( const RealVariable &r,const double num)
     c.arr[2]*=num;
     return c;
 }
-RealVariable operator*(const RealVariable& r,const RealVariable& rr){
+RealVariable  solver::operator*(const RealVariable& r,const RealVariable& rr){
    return r;
     
    
 }
 
-RealVariable operator==(const int num, const RealVariable &r)
+RealVariable  solver::operator==(const int num, const RealVariable &r)
 {
     
     
@@ -145,7 +147,7 @@ RealVariable operator==(const int num, const RealVariable &r)
     return c ;
 }
 
-RealVariable operator==( const RealVariable &r,const int num)
+RealVariable solver:: operator==( const RealVariable &r,const int num)
 {
     RealVariable c;
     c.arr[0]=r.arr[0];
@@ -157,7 +159,7 @@ RealVariable operator==( const RealVariable &r,const int num)
     
     return c ;
 }
-RealVariable operator==(const RealVariable& r,const RealVariable& rr){
+RealVariable solver:: operator==(const RealVariable& r,const RealVariable& rr){
        RealVariable c,d;
     c.arr[0]=r.arr[0];
     c.arr[1]=r.arr[1];
@@ -174,7 +176,7 @@ RealVariable operator==(const RealVariable& r,const RealVariable& rr){
     return c;
 }
 
-RealVariable operator/( const RealVariable &r,const int num)
+RealVariable  solver::operator/( const RealVariable &r,const int num)
 {
    RealVariable c;
     c.arr[0]=r.arr[0];
@@ -190,7 +192,7 @@ RealVariable operator/( const RealVariable &r,const int num)
 }
 
 
-RealVariable operator^(const RealVariable& r,const double d)
+RealVariable solver::operator^(const RealVariable& r,const double d)
 {
      RealVariable c;
     c.arr[0]=r.arr[0];
@@ -219,6 +221,7 @@ RealVariable operator^(const RealVariable& r,const double d)
         c.arr[2]=-pow(c.arr[2],2);
         else
          c.arr[2]=-pow(c.arr[2],2);
+         return c;
 
         
     }
@@ -227,9 +230,9 @@ RealVariable operator^(const RealVariable& r,const double d)
      throw runtime_error ("power needs to be 1 or 2 or 0");
 
 }
-  
+   
 
- double solve (const RealVariable& r)
+ double solver::solve (const RealVariable& r)
  {
      double x=(-(r.arr[1])+sqrt(pow(r.arr[1],2)-(4*r.arr[0]*r.arr[2])))/2*r.arr[0];
      return x;

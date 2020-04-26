@@ -15,33 +15,52 @@ namespace solver{
   
 
     };
-       RealVariable operator+(const RealVariable&,const double);
-       RealVariable operator+(const double,const RealVariable&);
-       RealVariable operator+(const RealVariable&,const RealVariable&);
+       
+RealVariable operator+(const double num, const RealVariable &r);
 
 
-       RealVariable operator-(const double,const RealVariable&);
-       RealVariable operator-(const RealVariable&,const double);
-       RealVariable operator-(const RealVariable&,const RealVariable&);
+RealVariable operator+( const RealVariable &r,const double num);
 
-       RealVariable operator*(const RealVariable&,const double);
-       RealVariable operator*(const double,const RealVariable&);
-       RealVariable operator*(const RealVariable&,const RealVariable&);
-
-       RealVariable operator/(const RealVariable&,const double);
-
-
-
-         RealVariable operator==(const RealVariable&,const RealVariable&);
-         RealVariable operator==(const RealVariable&,const double);
-         RealVariable operator==(const double, const RealVariable&);
-
-         
-         
-        RealVariable operator^(const RealVariable&,const double);
+RealVariable operator+(const RealVariable& r,const RealVariable& rr);
   
+
+
+
+RealVariable operator-(const double num, const RealVariable &r);
+
+
+RealVariable operator-( const RealVariable &r,const double num);
+
+RealVariable operator-(const RealVariable& r,const RealVariable& rr);
+   
+
+RealVariable operator*(const double num, const RealVariable &r);
+
+
+RealVariable operator*( const RealVariable &r,const double num);
+
+RealVariable operator*(const RealVariable& r,const RealVariable& rr);
+   
+    
+   
+
+RealVariable operator==(const int num, const RealVariable &r);
+
+
+RealVariable operator==( const RealVariable &r,const int num);
+
+RealVariable operator==(const RealVariable& r,const RealVariable& rr);
+   
+RealVariable operator/( const RealVariable &r,const int num);
+
+
+
+RealVariable operator^(const RealVariable& ,const double );
+
    
            class ComplexVariable{};
+     
                    double solve (const RealVariable&);
+           
 
 }
