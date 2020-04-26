@@ -11,7 +11,8 @@ namespace solver{
          
          RealVariable(){ arr[0]=0; arr[1]=0; arr[2]=0;}
        
-
+    
+  
 
     };
        RealVariable operator+(const RealVariable&,const double);
@@ -41,7 +42,6 @@ namespace solver{
   
    
            class ComplexVariable{};
-           class solve{};
                    double solve (const RealVariable&);
 
 }

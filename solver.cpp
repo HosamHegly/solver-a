@@ -5,7 +5,7 @@
 #include <complex>
 
 using namespace std;
-using solver::solve, solver::RealVariable, solver::ComplexVariable;
+using  solver::RealVariable, solver::ComplexVariable;
 
 
 RealVariable operator+(const double num, const RealVariable &r)
@@ -189,6 +189,45 @@ RealVariable operator/( const RealVariable &r,const int num)
  return c;
 }
 
+
+RealVariable operator^(const RealVariable& r,const double d)
+{
+     RealVariable c;
+    c.arr[0]=r.arr[0];
+    c.arr[1]=r.arr[1];
+
+    c.arr[2]=r.arr[2];
+    if(d==0)
+    {
+    c.arr[0]=0;
+    c.arr[1]=0;
+    c.arr[2]=1;
+    return c;
+    }
+
+    if(d==1)
+    {
+        return c;
+    }
+    if(d==2&&c.arr[0]!=0)
+        throw runtime_error ("power needs to be 1 or 2");
+    if(d==2)
+    {
+        c.arr[0]=pow(c.arr[1],2);
+        c.arr[1]=c.arr[1]*c.arr[2]*2;
+        if(c.arr[2]<0)
+        c.arr[2]=-pow(c.arr[2],2);
+        else
+         c.arr[2]=-pow(c.arr[2],2);
+
+        
+    }
+    else
+
+     throw runtime_error ("power needs to be 1 or 2 or 0");
+
+}
+  
 
  double solve (const RealVariable& r)
  {
