@@ -6,7 +6,7 @@
 #include <complex>
 
 using namespace std;
-
+using namespace std::complex_literals;
 
 using solver::RealVariable, solver::ComplexVariable ,solver::solve ;
 
@@ -129,4 +129,35 @@ RealVariable solver::operator^(const RealVariable& r,const int d)
   
      return x;
  }
+
+
+ ComplexVariable solver::operator +(const ComplexVariable& r, const ComplexVariable& rr)
+ {
+     return r;
+ }
+          ComplexVariable solver::operator -(const ComplexVariable& r, const ComplexVariable& rr){
+              return r;
+          }
+          
+           ComplexVariable solver::operator *(const ComplexVariable& r, const ComplexVariable& rr)
+           {
+               return r;
+           }
+           ComplexVariable solver::operator /(const ComplexVariable& r, const ComplexVariable& rr)
+           {
+               return r;
+           }
+           ComplexVariable solver::operator ^(const ComplexVariable& r, const ComplexVariable& rr)
+           {
+               return r;
+           }
+           ComplexVariable solver::operator ==(const ComplexVariable& r, const ComplexVariable& rr)
+           {
+               return r;
+           }
+           complex <double> solver::solve(const ComplexVariable& r)
+           {
+               complex<double> c= 3i;
+               return c;
+           }
 
