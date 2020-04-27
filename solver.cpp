@@ -1,240 +1,132 @@
 #include<iostream>
 #include"solver.hpp"
 #include <cmath>
+#include <exception>
 
 #include <complex>
 
 using namespace std;
 
 
-using solver::RealVariable, solver::ComplexVariable;
+using solver::RealVariable, solver::ComplexVariable ,solver::solve ;
+
   
-  
-  RealVariable solver:: operator+(const double num, const RealVariable &r)
-{
-    RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-
-    c.arr[2]+=num;
-    
-    return c ;
-}
-
-RealVariable  solver::operator+( const RealVariable &r,const double num)
-{
-     RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-
-    c.arr[2]+=num;
-    
-    return c ;
-}
 RealVariable solver:: operator+(const RealVariable& r,const RealVariable& rr){
-     RealVariable c,d;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-    c.arr[2]=r.arr[2];
-
-    d.arr[2]=rr.arr[2];
-    d.arr[0]=rr.arr[0];
-    d.arr[1]=rr.arr[1];
-    
-    c.arr[0]+=d.arr[0];
-    c.arr[1]+=d.arr[1];
-
-    c.arr[2]+=d.arr[2];
-    
-    return c;
-    
-    
-}
-
-
-
-RealVariable solver:: operator-(const double num, const RealVariable &r)
-{
-RealVariable c;
-    c.arr[0]=-r.arr[0];
-    c.arr[1]=-r.arr[1];
-
-    c.arr[2]=num-r.arr[2];
-    return c;
-}
-
-RealVariable  solver::operator-( const RealVariable &r,const double num)
-{
-    RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-
-    c.arr[2]-=num;
-    
-    return c ;
-}
-RealVariable  solver::operator-(const RealVariable& r,const RealVariable& rr){
-     RealVariable c,d;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-        c.arr[2]=r.arr[2];
-
-
-    d.arr[2]=rr.arr[2];
-    d.arr[0]=rr.arr[0];
-    d.arr[1]=rr.arr[1];
-     c.arr[0]-=d.arr[0];
-    c.arr[1]-=d.arr[1];
-
-    c.arr[2]-=d.arr[2];
-    return c;
-}
-
-RealVariable solver:: operator*(const double num, const RealVariable &r)
-{
      RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
+     c.a=r.a+rr.a;
+     c.b=r.b+rr.b;
+     c.c=r.c+rr.c;
+     
     
-    c.arr[0]*=num;
-    c.arr[1]*=num;
-
-    c.arr[2]*=num;
     return c;
+    
     
 }
 
-RealVariable  solver::operator*( const RealVariable &r,const double num)
+
+RealVariable solver:: operator-( const RealVariable& r, const RealVariable& rr)
 {
-     RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-    
-    c.arr[0]*=num;
-    c.arr[1]*=num;
-
-    c.arr[2]*=num;
+ RealVariable c;
+     c.a=r.a-rr.a;
+     c.b=r.b-rr.b;
+     c.c=r.c-rr.c;
+     
     return c;
 }
+
+
+
 RealVariable  solver::operator*(const RealVariable& r,const RealVariable& rr){
-   return r;
+   if((r.a!=0&&rr.a!=0)||(r.a!=0&&rr.b!=0)||(r.b!=0&&rr.a!=0))
+   throw runtime_error ("not allowed more than the power of 2");
+   
+    double a,b,c;
+    
+   
+   a=r.b*rr.b;
+  b=r.b*rr.c+r.c*rr.b;
+  c=r.c*rr.c;
+  if(r.a!=0)
+  a=a+r.a;
+  else
+  a=a+r.b;
+  
+  RealVariable x;;
+  x.a=a;
+  x.b=b;
+  x.c=c;
+  
+   return x;
+    
     
    
 }
 
-RealVariable  solver::operator==(const int num, const RealVariable &r)
-{
-    
-    
-    RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
 
-    c.arr[2]=r.arr[2];
-
-    c.arr[2]-=num;
-    
-    return c ;
-}
-
-RealVariable solver:: operator==( const RealVariable &r,const int num)
-{
-    RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-
-    c.arr[2]-=num;
-    
-    return c ;
-}
 RealVariable solver:: operator==(const RealVariable& r,const RealVariable& rr){
-       RealVariable c,d;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-        c.arr[2]=r.arr[2];
-
-
-    d.arr[2]=rr.arr[2];
-    d.arr[0]=rr.arr[0];
-    d.arr[1]=rr.arr[1];
-     c.arr[0]-=d.arr[0];
-    c.arr[1]-=d.arr[1];
-
-    c.arr[2]-=d.arr[2];
-    return c;
+       
+   
+    return r-rr;
 }
 
-RealVariable  solver::operator/( const RealVariable &r,const int num)
+RealVariable  solver::operator/( const RealVariable& r,const RealVariable& rr)
 {
-   RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
     
-    c.arr[0]/=num;
-        c.arr[1]/=num;
-
-    c.arr[2]/=num;
+   RealVariable c;
+   c.a=r.a/rr.c;
+   c.b=r.b/rr.c;
+   c.c=r.c/rr.c;
+   
  return c;
 }
 
 
-RealVariable solver::operator^(const RealVariable& r,const double d)
+RealVariable solver::operator^(const RealVariable& r,const int d)
 {
-     RealVariable c;
-    c.arr[0]=r.arr[0];
-    c.arr[1]=r.arr[1];
-
-    c.arr[2]=r.arr[2];
-    if(d==0)
-    {
-    c.arr[0]=0;
-    c.arr[1]=0;
-    c.arr[2]=1;
-    return c;
-    }
-
-    if(d==1)
-    {
-        return c;
-    }
-    if(d==2&&c.arr[0]!=0)
-        throw runtime_error ("power needs to be 1 or 2");
-    if(d==2)
-    {
-        c.arr[0]=pow(c.arr[1],2);
-        c.arr[1]=c.arr[1]*c.arr[2]*2;
-        if(c.arr[2]<0)
-        c.arr[2]=-pow(c.arr[2],2);
-        else
-         c.arr[2]=-pow(c.arr[2],2);
-         return c;
-
-        
-    }
-    else
-
-     throw runtime_error ("power needs to be 1 or 2 or 0");
-
+    RealVariable x;
+    if(d<0&&d>2)
+     throw runtime_error ("not allowed more than the power of 2");
+     
+     if(d==0)
+     {
+     x.a=0;
+     x.b=0;
+     x.c=1;
+     }
+     if(d==2&&r.a!=0)
+     {
+     throw runtime_error ("not allowed more than the power of 2");
+     }
+     if(d==2)
+     {
+         x.a=pow(r.b,2);
+         
+         x.b=2*r.b*r.c;
+       x.c=pow(r.c,2);
+     }
+     else
+     {
+         x.a=r.a;
+         x.b=r.b;
+         x.c=r.c;
+     }
+     return x;
 }
    
 
  double solver::solve (const RealVariable& r)
- {
-     double x=(-(r.arr[1])+sqrt(pow(r.arr[1],2)-(4*r.arr[0]*r.arr[2])))/2*r.arr[0];
+ { double x;
+     if(r.a!=0)
+     {
+      x=(-(r.b)+sqrt(pow(r.b,2)-(4*r.a*r.c)))/2*r.a;
+     }
+     else
+     x=r.c/-(r.b);
+     if(isnan(x))
+          throw runtime_error ("no solution");
+
+ 
+  
      return x;
  }
 

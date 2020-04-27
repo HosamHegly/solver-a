@@ -3,64 +3,55 @@
 #include <complex>
 #include <cmath>
 using namespace std;
+using namespace std::complex_literals;
+
 namespace solver{
+    
+   
     class RealVariable
     {
      public:
-       double arr[3];
+        double a,b,c;
+       
+         RealVariable(double a) : a(0),b(0),c(a){}
+         RealVariable():a(0),b(1),c(0){}
          
-         RealVariable(){ arr[0]=0; arr[1]=0; arr[2]=0;}
        
     
   
 
     };
-       
-RealVariable operator+(const double num, const RealVariable &r);
-
-
-RealVariable operator+( const RealVariable &r,const double num);
-
 RealVariable operator+(const RealVariable& r,const RealVariable& rr);
   
 
 
 
-RealVariable operator-(const double num, const RealVariable &r);
 
-
-RealVariable operator-( const RealVariable &r,const double num);
 
 RealVariable operator-(const RealVariable& r,const RealVariable& rr);
    
 
-RealVariable operator*(const double num, const RealVariable &r);
 
-
-RealVariable operator*( const RealVariable &r,const double num);
 
 RealVariable operator*(const RealVariable& r,const RealVariable& rr);
    
     
    
 
-RealVariable operator==(const int num, const RealVariable &r);
 
-
-RealVariable operator==( const RealVariable &r,const int num);
 
 RealVariable operator==(const RealVariable& r,const RealVariable& rr);
    
-RealVariable operator/( const RealVariable &r,const int num);
+RealVariable operator/( const RealVariable &r,const RealVariable&);
 
 
 
-RealVariable operator^(const RealVariable& ,const double );
+RealVariable operator^(const RealVariable& ,const int );
 
    
            class ComplexVariable{};
      
                    double solve (const RealVariable&);
-           
+          
 
 }
